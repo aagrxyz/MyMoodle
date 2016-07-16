@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+<h1> List of Your Students </h1>
+<br>
+<br>
+<br>
+<table style = "width:75%; padding:15px; " align="center" border=" 1px " >
+  <tr>
+  <th> Student Name </th>
+  <th> Student Entry Number </th>
+  <th> Action </th>
+  </tr>
+  {{if not len(students):}}
+  <tr>
+  <td colspan="3" style="text-align:center"> No Student Registered For your Course .. Add a Student</td>
+  </tr>
+  {{else:}}
+  {{for student in students:}}
+  <tr>
+  <td> {{=student.name}} </td>
+  <td> {{= student.entryno}}</td>
+  <td> {{=A('Edit',_href=URL("editstudent",args=student.id))}}&nbsp&nbsp&nbsp&nbsp&nbsp{{=A('Delete',callback=URL("deletestudent",args=student.id))}} </td>
+  </tr>
+  {{pass}}
+  {{pass}}
+
+</table>
+<br>
+<div align="center">
+<h2>
+
+Add A Student </h2>
+<br>
+{{=formaddstudent}}
+
+</div>
+
+
+
